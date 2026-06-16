@@ -7,6 +7,9 @@ import { errorHandler } from './middleware/errorHandler.js';
 import { logger } from './middleware/logger.js';
 import NotesRouter from './routes/notesRoutes.js';
 import { errors } from 'celebrate';
+import authRoutes from './routes/authRoutes.js';
+import cookieParser from 'cookie-parser';
+
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -17,12 +20,14 @@ const PORT = process.env.PORT ?? 3000;
 app.use(logger);
 app.use(express.json());
 app.use(cors());
-
+app.use(cookieParser());
 
 
 // GET-запит до "/notes"
 // GET-запит  "/notes/:noteId"
 app.use(NotesRouter);
+
+app.use(authRoutes);
 
 
 // test-error
