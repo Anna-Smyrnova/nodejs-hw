@@ -33,9 +33,7 @@ const userResponse = newUser.toObject();
 
     setSessionCookies(res, session);
 
-  res.status(201).json(newUser);
-
- res.status(201).json({ user: userResponse });
+  res.status(201).json({ user: userResponse });
 };
 
 // 2. ЛОГІН
@@ -92,7 +90,7 @@ export const refreshUserSession = async (req, res) => {
     throw createHttpError(401, 'Missing session credentials');
   }
 
- 
+
   const session = await Session.findOne({
     _id: sessionId,
     refreshToken,
