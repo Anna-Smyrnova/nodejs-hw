@@ -22,24 +22,18 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
-// GET-запит до "/notes"
-// GET-запит  "/notes/:noteId"
+
+// Маршрутизатори
 app.use(NotesRouter);
-
 app.use(authRoutes);
-
 app.use(userRoutes);
 
-// test-error
-app.get('/test-error', (req, res) => {
-  throw new Error('Simulated server error');
-});
-
-// 3. Мідлвар від celebrate
-app.use(errors());
 
 // Middleware 404
 app.use(notFoundHandler);
+
+// 3. Мідлвар від celebrate
+app.use(errors());
 
 // Middleware 500
 app.use(errorHandler);
